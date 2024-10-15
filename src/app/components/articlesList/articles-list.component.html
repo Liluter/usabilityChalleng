@@ -1,0 +1,6 @@
+<h1>Articles List</h1>
+@if(allArticles$ | async ; as articles){
+{{articles[0].article.content}}
+} @else {
+Loading ...
+}
