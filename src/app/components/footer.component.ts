@@ -8,4 +8,8 @@ import { Component, Input } from "@angular/core";
 export class FooterComponent {
   @Input() linkAlias: string = '';
   @Input() linkHref: string = '';
+  @Input() copyrightText: string = '';
+
+  actualYear = new Date(Date.now()).getFullYear()
+
 }
