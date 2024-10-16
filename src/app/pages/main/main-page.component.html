@@ -1,5 +1,9 @@
 <div class="container">
-  <articles-list></articles-list>
+  @if(allArticles$ | async; as articles){
+  <articles-list [list]="articles"></articles-list>
+  } @else {
+  <p>Downloading ...</p>
+  }
   <footer-comp linkAlias="Lowgular" linkHref="http://www.lowgular.io"
     copyrightText="Karol Awdziewicz PL, All rights reserved."></footer-comp>
 </div>

@@ -2,23 +2,17 @@
   <h2 class="text-center mb-3 mt-4">Template Component - Article List</h2>
   <button class="btn btn-outline-dark text-center mx-auto mb-4">Add New Article</button>
 </nav>
-@if(allArticles$ | async ; as articles){
+@if(list){
 <div class="row g-3 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
-  @for(article of articles; track $index){
+  @for(article of list; track $index){
   <div class="col">
     <div class="card">
-      <div class="card-header text-center">
-        <h2 class="card-title">{{article.title}}</h2>
-      </div>
-      <div class="card-body">
-        <p class="card-text fs-5">{{article.content}}</p>
-      </div>
+      <article-comp [title]="article.title" [content]="article.content"></article-comp>
     </div>
   </div>
-
   }
 </div>
 
 } @else {
-Loading ...
+Downloading articles ...
 }
