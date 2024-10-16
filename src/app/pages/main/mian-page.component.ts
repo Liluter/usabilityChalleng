@@ -9,5 +9,6 @@ import { ArticlesList } from "../../components/articlesList/articles-list.compon
   imports: [FooterComponent, ArticlesList]
 })
 export class MainPageComponent {
-
+  // api 
+  // output -> do dumb component
 }
