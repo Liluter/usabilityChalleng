@@ -2,17 +2,29 @@
   <h2 class="text-center mb-3 mt-4">Template Component - Article List</h2>
   <button class="btn btn-outline-dark text-center mx-auto mb-4">Add New Article</button>
 </nav>
-@if(list){
-<div class="row g-3 row-cols-md-3 row-cols-sm-2 row-cols-xs-1">
-  @for(article of list; track $index){
-  <div class="col">
+@if(articleList){
+<div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+  @for(article of articleList; track $index;let lastArticle = $last){
+  @if((articleRange()[0] < $index) && ($index <=articleRange()[1]) ) { <div class="col">
     <div class="card">
       <article-comp [title]="article.title" [content]="article.content"></article-comp>
+      @if(showImage() === article.id){
+      @if(validationUrl(article.imageUrl)){
+      <div class="m-3">
+        <article-image [articleData]="article"></article-image>
+      </div>
+      } @else {
+      <p class="m-3 text-danger">incorect image url </p>
+      }
+      <button class="btn btn-outline-secondary m-3" (click)="toggleImg(article.id)">Hide Image</button>
+      } @else {
+      <button class="btn btn-secondary m-3" (click)="toggleImg(article.id)">Show Image</button>
+      }
     </div>
-  </div>
-  }
 </div>
-
+}}
+</div>
+<paginator-component [range]="articleRange()" (rangeSelector)="selectRange($event)"></paginator-component>
 } @else {
 Downloading articles ...
 }

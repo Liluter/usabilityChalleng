@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { FooterData } from "../../types/footerData.inteface";
 
 @Component({
   selector: 'footer-comp',
@@ -6,9 +7,7 @@ import { Component, Input } from "@angular/core";
   standalone: true,
 })
 export class FooterComponent {
-  @Input() linkAlias: string = '';
-  @Input() linkHref: string = '';
-  @Input() copyrightText: string = '';
+  @Input({ required: true }) data!: FooterData
 
   actualYear = new Date(Date.now()).getFullYear()
 

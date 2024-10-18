@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true
 })
 export class ArticleComponent {
-  @Input() title?: string
-  @Input() content?: string
+  @Input() title: string = ''
+  @Input() content: string = ''
 }
+

@@ -1,9 +1,14 @@
-<div class="container">
+<div class="d-flex  flex-column height100">
   @if(allArticles$ | async; as articles){
-  <articles-list [list]="articles"></articles-list>
+  <div class="container d-block flex-grow-1">
+    <articles-list [articleList]="articles" class="d-block maxHeight">
+    </articles-list>
+  </div>
   } @else {
-  <p>Downloading ...</p>
+  <div class="container d-block flex-grow-1">
+    <p>Downloading ...</p>
+  </div>
   }
-  <footer-comp linkAlias="Lowgular" linkHref="http://www.lowgular.io"
-    copyrightText="Karol Awdziewicz PL, All rights reserved."></footer-comp>
+  <footer-comp [data]="footerData">
+  </footer-comp>
 </div>
