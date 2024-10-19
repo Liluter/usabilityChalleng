@@ -12,7 +12,7 @@ import { FormModes } from "../../types/enums"
   imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent]
 })
 export class ArticlesListComponent {
-  @Input({ required: true }) articleList: ArticleElement[] = []
+  @Input({ required: true }) articleList!: ArticleElement[]
   @Output() openFormHandler = new EventEmitter<FormModes>
   articleRange = signal([0, 2])
   formModes = FormModes

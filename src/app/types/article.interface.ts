@@ -4,7 +4,7 @@ export interface ArticleElement {
     imageUrl: string,
     title: string
   },
-  comments: [{ text: string, user: { avatar: string, name: string } }],
+  comments?: [{ text: string, user: { avatar: string, name: string } }],
   content: string,
   createdAt: string,
   data?: {

@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-header text-center">
-    <h2 class="card-title">{{title}}</h2>
+    <h2 class="card-title">{{_title}}</h2>
   </div>
-  @if(showImage() && validationUrl() && image ){
-  <article-image class="p-3" [articleData]="image"></article-image>
+  @if(showImage() && validationUrl() && imageUrl ){
+  <article-image class="p-3" [url]="imageUrl" [title]="imageTitle"></article-image>
   } @else if (!validationUrl()) {
-  <p class="m-3 text-danger">incorect image url </p>
+  <p class="m-3 text-danger">incorect image url :(</p>
   }
   <div class="card-body">
     <p class="card-text fs-5">{{content}}</p>
