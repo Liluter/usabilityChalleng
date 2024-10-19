@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2 class="card-title">{{title}}</h2>
+  </div>
+  @if(showImage() && validationUrl() && image ){
+  <article-image class="p-3" [articleData]="image"></article-image>
+  } @else if (!validationUrl()) {
+  <p class="m-3 text-danger">incorect image url </p>
+  }
+  <div class="card-body">
+    <p class="card-text fs-5">{{content}}</p>
+  </div>
+  <div class="card-footer ">
+    <div class="mb-0">
+      <div class="d-block d-flex justify-content-center">
+        @if(showImage() ){
+        <button class="btn btn-secondary mx-3" (click)="toggleImage()">Hide Image</button>
+        } @else {
+        <button class="btn btn-outline-secondary mx-3" (click)="toggleImage()">Show Image</button>
+        }
+        <button class="btn btn-outline-secondary mx-3">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, signal, WritableSignal } from '@angular/core';
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { AsyncPipe, JsonPipe, NgClass } from '@angular/common';
-import { ArticleComponent } from '../articleCard/article.component';
+import { ArticleComponent } from '../article/article.component';
 import { ArticleElement } from '../../types/article.interface';
 import { ArticleImageComponent } from "../articleImage/article-image.component";
 import { PaginatorComponent } from "../paginator/paginator.component";
@@ -14,15 +14,8 @@ import { FormModes } from "../../types/enums"
 export class ArticlesListComponent {
   @Input({ required: true }) articleList: ArticleElement[] = []
   @Output() openFormHandler = new EventEmitter<FormModes>
-  showImage: WritableSignal<number> = signal(0)
-  articleRange = signal([0, 5])
+  articleRange = signal([0, 2])
   formModes = FormModes
-  toggleImg(newId: number) {
-    this.showImage.update(oldId => oldId === newId ? 0 : newId)
-  }
-  validationUrl(url: string) {
-    return url.includes('http') || url == '' ? true : false
-  }
 
   selectRange(event: string) {
     if (event === 'next') {
@@ -33,12 +26,12 @@ export class ArticlesListComponent {
   }
   nextRange() {
     if (this.articleRange()[1] <= 100) {
-      this.articleRange.update(range => [range[0] + 6, range[1] + 6])
+      this.articleRange.update(range => [range[0] + 3, range[1] + 3])
     }
   }
   previouseRange() {
     if (this.articleRange()[0] != 0) {
-      this.articleRange.update(range => [range[0] - 6, range[1] - 6])
+      this.articleRange.update(range => [range[0] - 3, range[1] - 3])
     }
   }
   showForm(mode: FormModes) {
