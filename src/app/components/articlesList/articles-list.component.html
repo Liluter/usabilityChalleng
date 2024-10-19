@@ -1,11 +1,12 @@
 <nav class="container d-flex flex-column justify-content-center ">
   <h2 class="text-center mb-3 mt-4">Template Component - Article List</h2>
-  <button class="btn btn-outline-dark text-center mx-auto mb-4">Add New Article</button>
+  <button class="btn btn-outline-dark text-center mx-auto mb-4" (click)="showForm(formModes.crate)">Add New
+    Article</button>
 </nav>
 @if(articleList){
 <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
   @for(article of articleList; track $index;let lastArticle = $last){
-  @if((articleRange()[0] < $index) && ($index <=articleRange()[1]) ) { <div class="col">
+  @if((articleRange()[0] <= $index) && ($index <=articleRange()[1]) ) { <div class="col">
     <div class="card">
       <article-comp [title]="article.title" [content]="article.content"></article-comp>
       @if(showImage() === article.id){

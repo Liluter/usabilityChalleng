@@ -1,7 +1,10 @@
 <div class="d-flex  flex-column height100">
+  @if(showForm() === 'create-mode'){
+  <create-form (modalHandler)="closeModal()"></create-form>
+  }
   @if(allArticles$ | async; as articles){
   <div class="container d-block flex-grow-1">
-    <articles-list [articleList]="articles" class="d-block maxHeight">
+    <articles-list [articleList]="articles" class="d-block maxHeight" (openFormHandler)="openModal($event) ">
     </articles-list>
   </div>
   } @else {

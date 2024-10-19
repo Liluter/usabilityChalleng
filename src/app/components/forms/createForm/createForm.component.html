@@ -1,0 +1,67 @@
+<div class="z-2  backdrop " (click)="closeModal($event)">
+</div>
+
+<div class="container position-fixed top-0 start-50 translate-middle-x z-2 p-0 mt-4">
+  <div class="row">
+    <div class="col me-3">
+      <div class="card p-3 bg-light">
+        <div class="card-body">
+          <h2 class="card-title text-center mt-4 mb-3">Create Mode</h2>
+          <form action="">
+            <div class="mb-3">
+              <label for="iamge-url" class="form-label">Image Url</label>
+              <input type="text" class="form-control" id="iamge-url" placeholder="Your Image">
+            </div>
+            <div class="mb-3">
+              <label for="article-name" class="form-label">Article Name</label>
+              <input type="text" class="form-control" id="article-name" placeholder="Your Title">
+            </div>
+            <div class="mb-3">
+              <label for="article-content" class="form-label">Article Content</label>
+              <textarea class="form-control" id="article-content" rows="12" placeholder="Your Content"></textarea>
+            </div>
+          </form>
+          <div class="mb-4">
+            <div class="d-block d-flex justify-content-evenly ">
+              <button class="btn btn-outline-dark ">Create</button>
+              <button class="btn btn-danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col ms-3">
+      <div class="row p-0">
+        <div class="card p-0 bg-light">
+          <div class="card-body p-0">
+            <h2 class="card-title text-center mb-3 mt-2">Preview</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row p-0 mt-3">
+        <div class="card p-0 bg-light">
+          <div class="card-body p-1">
+            <h1 class="card-title text-center mt-2 mb-3">Your Title</h1>
+
+            <h6 class="card-subtitle mb-0 text-body-secondary">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.Some quick example text to build on the card title and make up the bulk of the card's
+              content.Some quick example text to build on the card title and make up the bulk of the card's
+              content.Some quick example text to build on the card title and make up the bulk of the card's
+              content.Some quick example text to build on the card title and make up the bulk of the card's
+              content.Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </p>
+            <div class="mb-0">
+              <div class="d-block d-flex justify-content-center">
+                <button class="btn btn-outline-dark mx-3">Show Image</button>
+                <button class="btn btn-outline-dark mx-3">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
