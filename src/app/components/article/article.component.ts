@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { ArticleImageComponent } from "../articleImage/article-image.component";
 import { ArticleElement } from '../../types/article.interface';
+import { FormModes } from '../../types/enums';
 
 @Component({
   selector: 'article-comp',
@@ -9,6 +10,10 @@ import { ArticleElement } from '../../types/article.interface';
   imports: [ArticleImageComponent]
 })
 export class ArticleComponent {
+  private _mode = FormModes.show
+  disableBtns: boolean = false
+  showImage = signal(true)
+
   @Input({
     transform: (value: string) => {
       return value ? value : 'no title :('
@@ -23,7 +28,7 @@ export class ArticleComponent {
 
   @Input({
     transform: (value: string) => {
-      return value ? value : 'lack of image :('
+      return value ? value : 'Your Image'
     }
   }) imageUrl: string = ''
 
@@ -33,9 +38,13 @@ export class ArticleComponent {
     },
   }) articleId: string = ''
 
+  @Input() set mode(value: FormModes) {
+    this._mode = value;
+    this.disableBtns = (value === FormModes.edit || value === FormModes.create)
+  }
 
   @Output() editModalHandler: EventEmitter<ArticleElement> = new EventEmitter
-  showImage = signal(true)
+  // disableBtns = this.mode === 'edit-mode' || this.mode === 'create-mode'
   toggleImage() {
     this.showImage.update(bool => bool = !bool)
   }
@@ -54,7 +63,7 @@ export class ArticleComponent {
       id: this.articleId ?? ''
     }
     this.editModalHandler.emit(articleData)
-    console.log(articleData)
+    console.log('edit opened :', articleData)
   }
 }
 

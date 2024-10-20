@@ -14,24 +14,23 @@ import { FormModes } from '../../../types/enums';
   imports: [FormsModule, ArticleComponent]
 })
 export class CreateFormComponent {
-  private _mode: FormModes = FormModes.none
+  _mode: FormModes = FormModes.show
   title: string = ''
   api = inject(ApiService)
   @Input() set mode(value: FormModes) {
     this._mode = value;
     this.title = this.getTitleForMode(value)
   }
+
   @Input() lastArticleNo!: string | null | undefined
   @Output() modalHandler: EventEmitter<string> = new EventEmitter
   @Input() set editableData(value: ArticleElement | undefined) {
-    console.log('setter of editableData', value)
     this.article = {
       ...value,
       title: value?.title ?? 'Your Title',
       content: value?.content ?? 'Your Content',
       imageUrl: value?.imageUrl ?? 'Your Image'
     }
-    console.log('this.article', this.article)
   }
   article = {
     title: 'Your Title',
@@ -43,10 +42,10 @@ export class CreateFormComponent {
     this.modalHandler.emit('close')
   }
   submitForm(formObject: NgForm) {
+    console.log('submit form')
     let actualData = new Date().toISOString()
     let data: ArticleElement
     if (this._mode === FormModes.create) {
-
       data = {
         article: {
           content: this.article.content,
@@ -65,30 +64,14 @@ export class CreateFormComponent {
 
       }
     } else if (this._mode === FormModes.edit) {
-      if (this.editableData) {
-        data = {
-          article: {
-            content: this.editableData.content,
-            imageUrl: this.editableData.imageUrl,
-            title: this.editableData.title
-          },
-          content: this.editableData.content,
-          imageUrl: this.editableData.imageUrl,
-          title: this.editableData.title,
-          data: {
-            content: this.editableData.content,
-            imageUrl: this.editableData.imageUrl,
-            title: this.editableData.title
-          }
-        }
-        console.log('form', formObject)
-        console.log('model', data)
-        // this.api.postArticle(data).subscribe(res => {
-        //   this.modalHandler.emit('close')
-        // }, (error: HttpErrorResponse) => {
-        //   console.log('Error', error.error)
-        // })
-      }
+      data = this.article
+      console.log('form', formObject)
+      console.log('model', data)
+      this.api.putArticle(data).subscribe(res => {
+        this.modalHandler.emit('close')
+      }, (error: HttpErrorResponse) => {
+        console.log('Error', error.error)
+      })
     }
   }
   deleteLast() {

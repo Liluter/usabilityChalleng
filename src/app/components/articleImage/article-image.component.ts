@@ -7,7 +7,6 @@ import { ArticleElement } from '../../types/article.interface';
   standalone: true
 })
 export class ArticleImageComponent {
-  // @Input({ required: true }) articleData!: ArticleElement
   @Input() url: string = ''
   @Input() title: string = ''
 }

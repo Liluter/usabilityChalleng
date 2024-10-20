@@ -8,3 +8,8 @@
 	backdrop-filter: blur(5px);
 	// z-index: 999; /* Ensure it's positioned above other elements */
 }
+
+.scrollable {
+	overflow-y: scroll;
+	height: 77vh;
+}

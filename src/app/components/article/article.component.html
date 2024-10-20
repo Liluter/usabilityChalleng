@@ -14,11 +14,13 @@
     <div class="mb-0">
       <div class="d-block d-flex justify-content-center">
         @if(showImage() ){
-        <button class="btn btn-secondary mx-3" (click)="toggleImage()">Hide Image</button>
+        <button class="btn btn-secondary mx-3" (click)="toggleImage()" [disabled]="disableBtns">Hide
+          Image</button>
         } @else {
-        <button class="btn btn-outline-secondary mx-3" (click)="toggleImage()">Show Image</button>
+        <button class="btn btn-outline-secondary mx-3" (click)="toggleImage()" [disabled]="disableBtns">Show
+          Image</button>
         }
-        <button class="btn btn-outline-secondary mx-3" (click)="openEditModal()">Edit</button>
+        <button class="btn btn-outline-secondary mx-3" (click)="openEditModal()" [disabled]="disableBtns">Edit</button>
       </div>
     </div>
   </div>

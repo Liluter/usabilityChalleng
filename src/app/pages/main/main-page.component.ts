@@ -18,7 +18,7 @@ import { ArticleElement } from "../../types/article.interface";
 export class MainPageComponent {
   private readonly api = inject(ApiService)
   readonly allArticles$ = this.api.getAllArticles()
-  showForm = signal(FormModes.none)
+  showForm = signal(FormModes.show)
 
   footerData: FooterData = {
     linkAlias: "Lowgular",
@@ -31,7 +31,6 @@ export class MainPageComponent {
     if (data[0] === FormModes.create) {
       this.showForm.set(FormModes.create)
     } else if (data[0] === FormModes.edit) {
-      console.log('event #', data[0], data[1])
       this.showForm.set(FormModes.edit)
       if (data[1]) {
         this.editArticleData = data[1]
@@ -39,7 +38,7 @@ export class MainPageComponent {
     }
   }
   closeModal() {
-    this.showForm.set(FormModes.none)
+    this.showForm.set(FormModes.show)
   }
 
 }
