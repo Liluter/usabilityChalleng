@@ -27,8 +27,8 @@
                 <button type="submit" class="btn btn-outline-dark ">{{_mode==='create-mode'? 'Create' :
                   'Edit'}}</button>
                 <button type='button' class="btn btn-danger" (click)="closeModal($event)">Cancel</button>
-                <button type='button' class="btn btn-danger" (click)="deleteOne()"
-                  [disabled]="_mode==='create-mode'">Delete</button>
+                @if(_mode!=='create-mode'){<button type='button' class="btn btn-danger"
+                  (click)="deleteOne()">Delete</button>}
               </div>
             </div>
           </form>
