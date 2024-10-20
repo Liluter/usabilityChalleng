@@ -1,13 +1,12 @@
 <div class="z-2  backdrop " (click)="closeModal($event)">
 </div>
-
 <div class="container position-fixed top-0 start-50 translate-middle-x z-3 p-0 mt-4">
   <div class="row">
     <div class="col me-3">
       <div class="card p-3 bg-light">
         <div class="card-body">
           <h2 class="card-title text-center mt-3 mb-3">{{title}}</h2>
-          <form #newArticle="ngForm" (ngSubmit)="submitForm(newArticle)">
+          <form #newArticle="ngForm" (ngSubmit)="submitForm()">
             <div class="mb-3">
               <label for="iamge-url" class="form-label">Image Url</label>
               <input type="text" class="form-control" id="iamge-url" name="image-url" placeholder="Your Image"
@@ -25,9 +24,11 @@
             </div>
             <div class="mb-4">
               <div class="d-block d-flex justify-content-evenly ">
-                <button type="submit" class="btn btn-outline-dark ">Create</button>
+                <button type="submit" class="btn btn-outline-dark ">{{_mode==='create-mode'? 'Create' :
+                  'Edit'}}</button>
                 <button type='button' class="btn btn-danger" (click)="closeModal($event)">Cancel</button>
-                <button type='button' class="btn btn-danger" (click)="deleteLast()">Delete Last</button>
+                <button type='button' class="btn btn-danger" (click)="deleteOne()"
+                  [disabled]="_mode==='create-mode'">Delete</button>
               </div>
             </div>
           </form>
@@ -38,7 +39,7 @@
       <div class="row p-0">
         <div class="card p-0 bg-light">
           <div class="card-body p-0">
-            <h3 class="card-title text-center mt-2 mb-3 ">Preview {{mode}}</h3>
+            <h3 class="card-title text-center mt-2 mb-3 ">Preview</h3>
           </div>
         </div>
       </div>

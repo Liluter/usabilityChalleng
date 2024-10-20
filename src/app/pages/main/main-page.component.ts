@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { ArticlesListComponent } from "../../components/articlesList/articles-list.component";
 import { ApiService } from "../../services/api.service";
@@ -33,7 +33,7 @@ export class MainPageComponent {
     } else if (data[0] === FormModes.edit) {
       this.showForm.set(FormModes.edit)
       if (data[1]) {
-        this.editArticleData = data[1]
+        this.editArticleData = { ...data[1] }
       }
     }
   }

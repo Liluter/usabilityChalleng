@@ -18,6 +18,5 @@ export class ApiService {
   }
   putArticle(data: ArticleElement) {
     return this.http.put(articlesUrl + '/' + data.id, data)
-
   }
 }

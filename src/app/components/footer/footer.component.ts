@@ -7,8 +7,6 @@ import { FooterData } from "../../types/footerData.inteface";
   standalone: true,
 })
 export class FooterComponent {
-  @Input({ required: true }) data!: FooterData
-
   actualYear = new Date(Date.now()).getFullYear()
-
+  @Input({ required: true }) data!: FooterData
 }

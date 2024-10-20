@@ -10,7 +10,6 @@ import { FormModes } from '../../types/enums';
   imports: [ArticleImageComponent]
 })
 export class ArticleComponent {
-  private _mode = FormModes.show
   disableBtns: boolean = false
   showImage = signal(true)
 
@@ -39,18 +38,16 @@ export class ArticleComponent {
   }) articleId: string = ''
 
   @Input() set mode(value: FormModes) {
-    this._mode = value;
     this.disableBtns = (value === FormModes.edit || value === FormModes.create)
   }
 
   @Output() editModalHandler: EventEmitter<ArticleElement> = new EventEmitter
-  // disableBtns = this.mode === 'edit-mode' || this.mode === 'create-mode'
   toggleImage() {
     this.showImage.update(bool => bool = !bool)
   }
   validationUrl() {
     if (this.imageUrl) {
-      let cases = (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image')
+      const cases = (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image')
       return cases ? true : false
     } return false
   }
@@ -63,7 +60,6 @@ export class ArticleComponent {
       id: this.articleId ?? ''
     }
     this.editModalHandler.emit(articleData)
-    console.log('edit opened :', articleData)
   }
 }
 

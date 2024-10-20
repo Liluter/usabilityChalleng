@@ -18,31 +18,26 @@ export class ArticlesListComponent {
   formModes = FormModes
 
   selectRange(event: string) {
-    if (event === 'next') {
-      this.nextRange()
-    } else if (event === 'previouse') {
-      this.previouseRange()
-    } else if (event === 'last') {
-      this.lastInRange()
-    } else if (event === 'first') {
-      this.firstInRange()
+    switch (event) {
+      case 'first': this.firstInRange(); break;
+      case 'previouse': this.previouseRange(); break;
+      case 'next': this.nextRange(); break;
+      case 'last': this.lastInRange(); break;
     }
   }
   firstInRange() {
-    this.articleRange.update((range) => [0, 3])
+    this.articleRange.update((range) => [0, 2])
   }
   nextRange() {
-    if (this.articleRange()[1] <= 100) {
-      this.articleRange.update(range => [range[0] + 3, range[1] + 3])
-    }
+    this.articleRange.update((range) => [range[0] + 3, range[1] + 3])
   }
   previouseRange() {
     if (this.articleRange()[0] != 0) {
-      this.articleRange.update(range => [range[0] - 3, range[1] - 3])
+      this.articleRange.update((range) => [range[0] - 3, range[1] - 3])
     }
   }
   lastInRange() {
-    this.articleRange.update(range => [this.articleList.length - 3, this.articleList.length - 1])
+    this.articleRange.update((range) => [this.articleList.length - 3, this.articleList.length - 1])
   }
   showForm(data: [FormModes, ArticleElement?]) {
     this.openFormHandler.emit(data)

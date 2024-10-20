@@ -3,7 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ArticleComponent } from '../../article/article.component';
 import { ApiService } from '../../../services/api.service';
 import { ArticleElement } from '../../../types/article.interface';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { FormModes } from '../../../types/enums';
 
 @Component({
@@ -29,20 +29,21 @@ export class CreateFormComponent {
       ...value,
       title: value?.title ?? 'Your Title',
       content: value?.content ?? 'Your Content',
-      imageUrl: value?.imageUrl ?? 'Your Image'
+      imageUrl: value?.imageUrl ?? 'Your Image',
+      id: value?.id ?? '',
     }
   }
   article = {
     title: 'Your Title',
     content: 'Your Content',
-    imageUrl: 'Your Image'
+    imageUrl: 'Your Image',
+    id: ''
   }
   closeModal(event: Event) {
     event.stopImmediatePropagation()
     this.modalHandler.emit('close')
   }
-  submitForm(formObject: NgForm) {
-    console.log('submit form')
+  submitForm() {
     let actualData = new Date().toISOString()
     let data: ArticleElement
     if (this._mode === FormModes.create) {
@@ -61,36 +62,39 @@ export class CreateFormComponent {
           imageUrl: this.article.imageUrl,
           title: this.article.title
         }
-
       }
+      this.postArticle(data)
     } else if (this._mode === FormModes.edit) {
-      data = this.article
-      console.log('form', formObject)
-      console.log('model', data)
-      this.api.putArticle(data).subscribe(res => {
-        this.modalHandler.emit('close')
-      }, (error: HttpErrorResponse) => {
-        console.log('Error', error.error)
-      })
+      this.putArticle(this.article)
     }
   }
-  deleteLast() {
-    console.log(this.lastArticleNo)
-    if (this.lastArticleNo)
-      this.api.deleteArticle(this.lastArticleNo).subscribe(res => {
-        this.modalHandler.emit('close')
-      }, (error: HttpErrorResponse) => {
-        console.log('Error', error.error)
-      })
+  deleteOne() {
+    this.api.deleteArticle(this.article.id).subscribe((res: any) => {
+      this.modalHandler.emit('close')
+    }, (error: HttpErrorResponse) => {
+      console.log('Error', error.error)
+    })
+  }
+  postArticle(data: ArticleElement) {
+    this.api.postArticle(data).subscribe(res => {
+      this.modalHandler.emit('close')
+    }, (error: HttpErrorResponse) => {
+      console.log('Error', error.error)
+    })
+  }
+  putArticle(data: ArticleElement) {
+    this.api.putArticle(data).subscribe(res => {
+      this.modalHandler.emit('close')
+    }, (error: HttpErrorResponse) => {
+      console.log('Error', error.error)
+    })
   }
   private getTitleForMode(mode: FormModes): string {
     switch (mode) {
       case FormModes.create:
         return 'Create Mode';
-        break;
       case FormModes.edit:
         return 'Edit Mode';
-        break;
       default: return 'None Title'
     }
   }

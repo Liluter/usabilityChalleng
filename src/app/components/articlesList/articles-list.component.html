@@ -13,7 +13,8 @@
     </div>
     }}
 </div>
-<paginator-component [range]="articleRange()" (rangeSelector)="selectRange($event)"></paginator-component>
+<paginator-component [range]="articleRange()" [numberOfArticles]="articleList.length"
+  (rangeSelector)="selectRange($event)"></paginator-component>
 } @else {
 Downloading articles ...
 }
