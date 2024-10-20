@@ -4,7 +4,7 @@
   </div>
   @if(showImage() && validationUrl() && imageUrl !== 'Your Image' ){
   <article-image class="p-3" [url]="imageUrl" [title]="title"></article-image>
-  } @else if (imageUrl === 'Your Image'){
+  } @else if (imageUrl === 'Your Image' || imageUrl === 'lack of image :('){
   <p class="m-3 fs-5 fst-italic">Your Image</p>
   }
   <div class="card-body">

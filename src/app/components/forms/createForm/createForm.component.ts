@@ -15,15 +15,8 @@ import { FormModes } from '../../../types/enums';
 })
 export class CreateFormComponent {
   private _mode: FormModes = FormModes.none
-  // private _editableData: ArticleElement = {
-  //   title: 'Your Title',
-  //   content: 'Your Content',
-  //   imageUrl: 'Your Image'
-  // }
-  api = inject(ApiService)
-
   title: string = ''
-
+  api = inject(ApiService)
   @Input() set mode(value: FormModes) {
     this._mode = value;
     this.title = this.getTitleForMode(value)
@@ -31,11 +24,14 @@ export class CreateFormComponent {
   @Input() lastArticleNo!: string | null | undefined
   @Output() modalHandler: EventEmitter<string> = new EventEmitter
   @Input() set editableData(value: ArticleElement | undefined) {
+    console.log('setter of editableData', value)
     this.article = {
+      ...value,
       title: value?.title ?? 'Your Title',
       content: value?.content ?? 'Your Content',
       imageUrl: value?.imageUrl ?? 'Your Image'
     }
+    console.log('this.article', this.article)
   }
   article = {
     title: 'Your Title',

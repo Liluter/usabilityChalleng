@@ -21,7 +21,11 @@ export class ArticleComponent {
     }
   }) content: string = ''
 
-  @Input() imageUrl: string = ''
+  @Input({
+    transform: (value: string) => {
+      return value ? value : 'lack of image :('
+    }
+  }) imageUrl: string = ''
 
   @Input({
     transform: (value: string) => {
