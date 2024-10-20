@@ -1,4 +1,4 @@
-import { Component, inject, signal } from "@angular/core";
+import { Component, inject, signal, WritableSignal } from "@angular/core";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { ArticlesListComponent } from "../../components/articlesList/articles-list.component";
 import { ApiService } from "../../services/api.service";
@@ -6,6 +6,7 @@ import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../types/footerData.inteface";
 import { FormModes } from "../../types/enums";
 import { CreateFormComponent } from "../../components/forms/createForm/createForm.component";
+import { ArticleElement } from "../../types/article.interface";
 
 @Component({
   selector: 'main-page',
@@ -17,7 +18,6 @@ import { CreateFormComponent } from "../../components/forms/createForm/createFor
 export class MainPageComponent {
   private readonly api = inject(ApiService)
   readonly allArticles$ = this.api.getAllArticles()
-
   showForm = signal(FormModes.none)
 
   footerData: FooterData = {
@@ -25,15 +25,21 @@ export class MainPageComponent {
     linkHref: "http://www.lowgular.io",
     copyrightText: "Karol Awdziewicz PL, All rights reserved."
   }
-
-  openModal(mode: FormModes) {
-    if (mode === FormModes.crate) {
-
-      console.log('Modal opened in main page in ', mode)
-      this.showForm.set(FormModes.crate)
+  formModes = FormModes
+  editArticleData?: ArticleElement
+  openModal(data: [FormModes, ArticleElement?]) {
+    if (data[0] === FormModes.create) {
+      this.showForm.set(FormModes.create)
+    } else if (data[0] === FormModes.edit) {
+      console.log('event #', data[0], data[1])
+      this.showForm.set(FormModes.edit)
+      if (data[1]) {
+        this.editArticleData = data[1]
+      }
     }
   }
   closeModal() {
     this.showForm.set(FormModes.none)
   }
+
 }

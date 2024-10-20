@@ -12,8 +12,8 @@ import { FormModes } from "../../types/enums"
   imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent]
 })
 export class ArticlesListComponent {
-  @Input({ required: true }) articleList!: ArticleElement[]
-  @Output() openFormHandler = new EventEmitter<FormModes>
+  @Input({ required: true }) articleList: ArticleElement[] = []
+  @Output() openFormHandler = new EventEmitter<[FormModes, ArticleElement?]>
   articleRange = signal([0, 2])
   formModes = FormModes
 
@@ -22,7 +22,14 @@ export class ArticlesListComponent {
       this.nextRange()
     } else if (event === 'previouse') {
       this.previouseRange()
+    } else if (event === 'last') {
+      this.lastInRange()
+    } else if (event === 'first') {
+      this.firstInRange()
     }
+  }
+  firstInRange() {
+    this.articleRange.update((range) => [0, 3])
   }
   nextRange() {
     if (this.articleRange()[1] <= 100) {
@@ -34,7 +41,10 @@ export class ArticlesListComponent {
       this.articleRange.update(range => [range[0] - 3, range[1] - 3])
     }
   }
-  showForm(mode: FormModes) {
-    this.openFormHandler.emit(mode)
+  lastInRange() {
+    this.articleRange.update(range => [this.articleList.length - 3, this.articleList.length - 1])
+  }
+  showForm(data: [FormModes, ArticleElement?]) {
+    this.openFormHandler.emit(data)
   }
 }

@@ -1,15 +1,21 @@
 <div class="d-flex  flex-column height100">
-  @if(showForm() === 'create-mode'){
-  <create-form (modalHandler)="closeModal()"></create-form>
+  @if (allArticles$ | async; as articles){
+  @if(showForm() === formModes.create){
+  <create-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id"
+    [mode]="formModes.create"></create-form>
+  }@if(showForm() === formModes.edit){
+  <create-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id" [mode]="formModes.edit"
+    [editableData]="editArticleData"></create-form>
   }
-  @if(allArticles$ | async; as articles){
   <div class="container d-block flex-grow-1">
     <articles-list [articleList]="articles" class="d-block maxHeight" (openFormHandler)="openModal($event) ">
     </articles-list>
   </div>
   } @else {
-  <div class="container d-block flex-grow-1">
-    <p>Downloading ...</p>
+  <div class="d-flex justify-content-center align-items-center height100">
+    <div class="spinner-border text-secondary w20h20rem" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
   }
   <footer-comp [data]="footerData">

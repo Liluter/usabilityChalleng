@@ -1,19 +1,19 @@
 export interface ArticleElement {
-  article: {
+  article?: {
     content: string,
     imageUrl: string,
     title: string
   },
   comments?: [{ text: string, user: { avatar: string, name: string } }],
   content: string,
-  createdAt: string,
+  createdAt?: string,
   data?: {
     content: string,
-    id: number,
+    id?: number,
     imageUrl: string,
     title: string
   },
-  id: number,
+  id?: string,
   imageUrl: string,
   title: string
 }

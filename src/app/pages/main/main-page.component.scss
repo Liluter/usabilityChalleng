@@ -4,3 +4,7 @@
 .maxHeight {
 	height: max(100vh, 100%);
 }
+.w20h20rem {
+	width: min(20rem, 600px);
+	height: min(20rem, 600px);
+}

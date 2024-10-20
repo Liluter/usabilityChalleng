@@ -8,14 +8,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class PaginatorComponent {
   @Input({ required: true }) range: number[] = [0, 6]
   @Output() rangeSelector = new EventEmitter<string>
+  firstInRange() {
+    this.rangeSelector.emit('first')
+  }
   nextRange() {
     this.rangeSelector.emit('next')
-    console.log('emitted next')
   }
   previouseRange() {
     this.rangeSelector.emit('previouse')
-    console.log('emitted previouse')
   }
 
+  lastInRange() {
+    this.rangeSelector.emit('last')
 
+  }
 }

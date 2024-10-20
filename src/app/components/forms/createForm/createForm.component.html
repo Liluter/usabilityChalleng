@@ -6,7 +6,7 @@
     <div class="col me-3">
       <div class="card p-3 bg-light">
         <div class="card-body">
-          <h2 class="card-title text-center mt-4 mb-3">Create Mode</h2>
+          <h2 class="card-title text-center mt-3 mb-3">{{title}}</h2>
           <form #newArticle="ngForm" (ngSubmit)="submitForm(newArticle)">
             <div class="mb-3">
               <label for="iamge-url" class="form-label">Image Url</label>
@@ -16,7 +16,7 @@
             <div class="mb-3">
               <label for="article-name" class="form-label">Article Name</label>
               <input type="text" class="form-control" id="article-name" name="article-name" placeholder="Your Title"
-                [(ngModel)]="article.name">
+                [(ngModel)]="article.title">
             </div>
             <div class="mb-3">
               <label for="article-content" class="form-label">Article Content</label>
@@ -26,7 +26,8 @@
             <div class="mb-4">
               <div class="d-block d-flex justify-content-evenly ">
                 <button type="submit" class="btn btn-outline-dark ">Create</button>
-                <button class="btn btn-danger" (click)="closeModal($event)">Cancel</button>
+                <button type='button' class="btn btn-danger" (click)="closeModal($event)">Cancel</button>
+                <button type='button' class="btn btn-danger" (click)="deleteLast()">Delete Last</button>
               </div>
             </div>
           </form>
@@ -37,28 +38,13 @@
       <div class="row p-0">
         <div class="card p-0 bg-light">
           <div class="card-body p-0">
-            <h3 class="card-title text-center mt-2 mb-3 ">Preview</h3>
+            <h3 class="card-title text-center mt-2 mb-3 ">Preview {{mode}}</h3>
           </div>
         </div>
       </div>
       <div class="row p-0 mt-3">
-        <div class="card p-0 bg-light">
-          <div class="card-header bg-light p-0">
-            <h3 class="card-title text-center mt-2 mb-3">Your Title</h3>
-          </div>
-          <div class="card-body pt-3 pb-4 bg-white fs-5">
-            <p class="card-text fst-italic">Your Image</p>
-            <p class="card-text">Your Content</p>
-          </div>
-          <div class="card-footer bg-light">
-            <div class="mb-0">
-              <div class="d-block d-flex justify-content-center">
-                <button class="btn btn-outline-secondary mx-3">Show Image</button>
-                <button class="btn btn-outline-secondary mx-3">Edit</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <article-comp class="p-0" [title]="article.title" [content]="article.content"
+          [imageUrl]="article.imageUrl"></article-comp>
       </div>
     </div>
   </div>

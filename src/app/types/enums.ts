@@ -1,5 +1,5 @@
 export enum FormModes {
-  crate = 'create-mode',
+  create = 'create-mode',
   edit = 'edit-mode',
   none = ''
 }

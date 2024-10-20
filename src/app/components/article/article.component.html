@@ -1,11 +1,11 @@
 <div class="card">
   <div class="card-header text-center">
-    <h2 class="card-title">{{_title}}</h2>
+    <h2 class="card-title">{{title}}</h2>
   </div>
-  @if(showImage() && validationUrl() && imageUrl ){
-  <article-image class="p-3" [url]="imageUrl" [title]="imageTitle"></article-image>
-  } @else if (!validationUrl()) {
-  <p class="m-3 text-danger">incorect image url :(</p>
+  @if(showImage() && validationUrl() && imageUrl !== 'Your Image' ){
+  <article-image class="p-3" [url]="imageUrl" [title]="title"></article-image>
+  } @else if (imageUrl === 'Your Image'){
+  <p class="m-3 fs-5 fst-italic">Your Image</p>
   }
   <div class="card-body">
     <p class="card-text fs-5">{{content}}</p>
@@ -18,7 +18,7 @@
         } @else {
         <button class="btn btn-outline-secondary mx-3" (click)="toggleImage()">Show Image</button>
         }
-        <button class="btn btn-outline-secondary mx-3">Edit</button>
+        <button class="btn btn-outline-secondary mx-3" (click)="openEditModal()">Edit</button>
       </div>
     </div>
   </div>
