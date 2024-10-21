@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { ArticleImageComponent } from "../articleImage/article-image.component";
-import { ArticleElement } from '../../types/article.interface';
-import { FormModes } from '../../types/enums';
+import { ArticleImageComponent } from "../UI/articleImage/article-image.component";
+import { ArticleElement } from '../../models/article.interface';
+import { FormModes } from '../../models/enums';
 
 @Component({
   selector: 'article-comp',

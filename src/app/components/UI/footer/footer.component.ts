@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { FooterData } from "../../types/footerData.inteface";
+import { FooterData } from "../../../models/footerData.inteface";
 
 @Component({
   selector: 'footer-comp',

@@ -1,13 +1,13 @@
 import { Component, inject, signal } from "@angular/core";
-import { FooterComponent } from "../../components/footer/footer.component";
+import { FooterComponent } from "../../components/UI/footer/footer.component";
 import { ArticlesListComponent } from "../../components/articlesList/articles-list.component";
 import { ApiService } from "../../services/api.service";
 import { AsyncPipe } from "@angular/common";
-import { FooterData } from "../../types/footerData.inteface";
-import { FormModes } from "../../types/enums";
+import { FooterData } from "../../models/footerData.inteface";
+import { FormModes } from "../../models/enums";
 import { CreateFormComponent } from "../../components/forms/createForm/createForm.component";
-import { ArticleElement } from "../../types/article.interface";
-import { Sizes, SpinnerComponent } from "../../components/spinner/spinner.component";
+import { ArticleElement } from "../../models/article.interface";
+import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.component";
 
 @Component({
   selector: 'main-page',

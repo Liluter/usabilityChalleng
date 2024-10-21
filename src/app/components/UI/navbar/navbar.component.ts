@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormModes } from "../../types/enums";
+import { FormModes } from "../../../models/enums";
 
 @Component({
   selector: 'navbar-comp',
