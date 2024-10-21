@@ -1,15 +1,14 @@
-<nav class="container d-flex flex-column justify-content-center ">
-  <h2 class="text-center mb-3 mt-4">Template Component - Article List</h2>
-  <button class="btn btn-outline-dark text-center mx-auto mb-4" (click)="showForm([formModes.create])">Add New
-    Article</button>
-</nav>
+<navbar-comp title="Template Component - Article List" buttonContent="Add New Article"
+  [buttonEventSelector]="formModes.create" (buttonEvent)="showForm([$event])"></navbar-comp>
 @if(articleList){
 <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
   @for(article of articleList; track $index;let lastArticle = $last){
-  @if((articleRange()[0] <= $index) && (articleRange()[1]>= $index) ) { <div class="col">
+  @if((articleRange()[0] <= $index) && (articleRange()[1]>= $index) ) {
+    <div class="col">
       <article-comp [title]="article?.title ?? ''" [content]="article?.content ?? ''"
         [imageUrl]="article?.imageUrl ?? ''" [articleId]="article?.id ?? ''"
-        (editModalHandler)="showForm([formModes.edit,$event])"></article-comp>
+        (editModalHandler)="showForm([formModes.edit,$event])">
+      </article-comp>
     </div>
     }}
 </div>

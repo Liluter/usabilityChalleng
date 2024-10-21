@@ -42,6 +42,7 @@ export class ArticleComponent {
   }
 
   @Output() editModalHandler: EventEmitter<ArticleElement> = new EventEmitter
+
   toggleImage() {
     this.showImage.update(bool => bool = !bool)
   }
@@ -50,7 +51,6 @@ export class ArticleComponent {
       (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image') ? true : false
       : false
   }
-
   openEditModal() {
     const articleData: ArticleElement = {
       content: this.content ?? '',

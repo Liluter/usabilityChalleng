@@ -14,8 +14,10 @@ export class PaginatorComponent {
     this.rangeSelector.emit('first')
   }
   nextRange() {
-    if (this.range[1] <= this.numberOfArticles - 3) {
-      this.rangeSelector.emit('next')
+    if (this.numberOfArticles !== 0) {
+      if (this.range[1] <= this.numberOfArticles - 3) {
+        this.rangeSelector.emit('next')
+      }
     }
   }
   previouseRange() {

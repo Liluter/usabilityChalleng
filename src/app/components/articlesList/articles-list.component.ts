@@ -5,11 +5,12 @@ import { ArticleElement } from '../../types/article.interface';
 import { ArticleImageComponent } from "../articleImage/article-image.component";
 import { PaginatorComponent } from "../paginator/paginator.component";
 import { FormModes } from "../../types/enums"
+import { NavbarComponent } from "../navbar/navbar.component";
 @Component({
   selector: 'articles-list',
   templateUrl: './articles-list.component.html',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent]
+  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent, NavbarComponent]
 })
 export class ArticlesListComponent {
   @Input({ required: true }) articleList: ArticleElement[] = []
