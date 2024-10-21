@@ -6,18 +6,19 @@ import { ArticleImageComponent } from "../articleImage/article-image.component";
 import { PaginatorComponent } from "../paginator/paginator.component";
 import { FormModes } from "../../types/enums"
 import { NavbarComponent } from "../navbar/navbar.component";
+import { Sizes, SpinnerComponent } from "../spinner/spinner.component";
 @Component({
   selector: 'articles-list',
   templateUrl: './articles-list.component.html',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent, NavbarComponent]
+  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent, NavbarComponent, SpinnerComponent]
 })
 export class ArticlesListComponent {
   @Input({ required: true }) articleList: ArticleElement[] = []
   @Output() openFormHandler = new EventEmitter<[FormModes, ArticleElement?]>
   articleRange = signal([0, 2])
   formModes = FormModes
-
+  sizes = Sizes
   selectRange(event: string) {
     switch (event) {
       case 'first': this.firstInRange(); break;

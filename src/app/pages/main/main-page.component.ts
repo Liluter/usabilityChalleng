@@ -7,13 +7,14 @@ import { FooterData } from "../../types/footerData.inteface";
 import { FormModes } from "../../types/enums";
 import { CreateFormComponent } from "../../components/forms/createForm/createForm.component";
 import { ArticleElement } from "../../types/article.interface";
+import { Sizes, SpinnerComponent } from "../../components/spinner/spinner.component";
 
 @Component({
   selector: 'main-page',
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   standalone: true,
-  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, CreateFormComponent]
+  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, CreateFormComponent, SpinnerComponent]
 })
 export class MainPageComponent {
   private readonly api = inject(ApiService)
@@ -26,6 +27,7 @@ export class MainPageComponent {
     copyrightText: "Karol Awdziewicz PL, All rights reserved."
   }
   formModes = FormModes
+  sizes = Sizes
   editArticleData?: ArticleElement
   openModal(data: [FormModes, ArticleElement?]) {
     if (data[0] === FormModes.create) {

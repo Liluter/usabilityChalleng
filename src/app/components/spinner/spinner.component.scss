@@ -1,0 +1,19 @@
+.w5h5rem {
+	width: min(5rem, 600px);
+	height: min(5rem, 600px);
+}
+.w10h10rem {
+	width: min(10rem, 600px);
+	height: min(10rem, 600px);
+}
+.w20h20rem {
+	width: min(20rem, 600px);
+	height: min(20rem, 600px);
+}
+.w30h30rem {
+	width: min(30rem, 600px);
+	height: min(30rem, 600px);
+}
+.height100 {
+	min-height: 100vh;
+}

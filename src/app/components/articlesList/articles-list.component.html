@@ -15,5 +15,5 @@
 <paginator-component [range]="articleRange()" [numberOfArticles]="articleList.length"
   (rangeSelector)="selectRange($event)"></paginator-component>
 } @else {
-Downloading articles ...
+<spinner-comp [size]="sizes.large"></spinner-comp>
 }

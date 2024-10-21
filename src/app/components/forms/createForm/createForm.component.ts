@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ArticleComponent } from '../../article/article.component';
 import { ApiService } from '../../../services/api.service';
-import { ArticleData, ArticleElement } from '../../../types/article.interface';
+import { ArticleElement } from '../../../types/article.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormModes } from '../../../types/enums';
 
@@ -45,7 +45,7 @@ export class CreateFormComponent {
     this.modalHandler.emit('close')
   }
   submitForm() {
-    let actualData = new Date().toISOString()
+    const actualData = new Date().toISOString()
     let data: ArticleElement
     if (this._mode === FormModes.create) {
       data = {

@@ -12,11 +12,7 @@
     </articles-list>
   </div>
   } @else {
-  <div class="d-flex justify-content-center align-items-center height100">
-    <div class="spinner-border text-secondary w20h20rem" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
+  <spinner-comp [size]="sizes.large"></spinner-comp>
   }
   <footer-comp [data]="footerData">
   </footer-comp>
