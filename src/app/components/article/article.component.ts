@@ -46,10 +46,9 @@ export class ArticleComponent {
     this.showImage.update(bool => bool = !bool)
   }
   validationUrl() {
-    if (this.imageUrl) {
-      const cases = (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image')
-      return cases ? true : false
-    } return false
+    return this.imageUrl ?
+      (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image') ? true : false
+      : false
   }
 
   openEditModal() {
