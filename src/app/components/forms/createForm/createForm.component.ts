@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ArticleComponent } from '../../article/article.component';
 import { ApiService } from '../../../services/api.service';
-import { ArticleElement } from '../../../types/article.interface';
-import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
+import { ArticleData, ArticleElement } from '../../../types/article.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 import { FormModes } from '../../../types/enums';
 
 @Component({
@@ -14,31 +14,32 @@ import { FormModes } from '../../../types/enums';
   imports: [FormsModule, ArticleComponent]
 })
 export class CreateFormComponent {
+  api = inject(ApiService)
   _mode: FormModes = FormModes.show
   title: string = ''
-  api = inject(ApiService)
-  @Input() set mode(value: FormModes) {
-    this._mode = value;
-    this.title = this.getTitleForMode(value)
-  }
-
-  @Input() lastArticleNo!: string | null | undefined
-  @Output() modalHandler: EventEmitter<string> = new EventEmitter
-  @Input() set editableData(value: ArticleElement | undefined) {
-    this.article = {
-      ...value,
-      title: value?.title ?? 'Your Title',
-      content: value?.content ?? 'Your Content',
-      imageUrl: value?.imageUrl ?? 'Your Image',
-      id: value?.id ?? '',
-    }
-  }
   article = {
     title: 'Your Title',
     content: 'Your Content',
     imageUrl: 'Your Image',
     id: ''
   }
+
+  @Input() set mode(value: FormModes) {
+    this._mode = value;
+    this.title = this.getTitleForMode(value)
+  }
+  @Input() lastArticleNo!: string | null | undefined
+  @Output() modalHandler: EventEmitter<string> = new EventEmitter
+  @Input() set editableData(value: ArticleElement | undefined) {
+    this.article = {
+      ...value,
+      title: value?.title ?? this.article.title,
+      content: value?.content ?? this.article.content,
+      imageUrl: value?.imageUrl ?? this.article.imageUrl,
+      id: value?.id ?? this.article.id,
+    }
+  }
+
   closeModal(event: Event) {
     event.stopImmediatePropagation()
     this.modalHandler.emit('close')
@@ -60,7 +61,7 @@ export class CreateFormComponent {
         data: {
           content: this.article.content,
           imageUrl: this.article.imageUrl,
-          title: this.article.title
+          title: this.article.title,
         }
       }
       this.postArticle(data)
