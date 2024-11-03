@@ -1,11 +1,9 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ArticleComponent } from '../article/article.component';
-import { ApiService } from '../../services/api.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormModes } from '../../models/enums';
-import { MyBtnComponent } from "../../my-btn/my-btn.component";
+import { MyBtnComponent } from "../UI/my-btn/my-btn.component";
 import { ViewModel } from '../../models/viewModel.interface';
+import { FormModes } from '../../models/enums';
 
 @Component({
   selector: 'app-form',
@@ -15,29 +13,20 @@ import { ViewModel } from '../../models/viewModel.interface';
   imports: [FormsModule, ArticleComponent, MyBtnComponent]
 })
 export class FormComponent {
-  api = inject(ApiService)
   _mode: FormModes = FormModes.show
   _title: string = ''
-  _article = {
+  _data: ViewModel = {
     title: 'Your Title',
     content: 'Your Content',
     imageUrl: 'Your Image',
     id: ''
   }
-
   @Input() set mode(value: FormModes) {
     this._mode = value;
     this._title = this.getTitleForMode(value)
   }
-  @Input() lastArticleNo!: string | null | undefined
   @Input() set formData(value: ViewModel | undefined) {
-    this._article = {
-      ...value,
-      title: value?.title ?? this._article.title,
-      content: value?.content ?? this._article.content,
-      imageUrl: value?.imageUrl ?? this._article.imageUrl,
-      id: value?.id ?? this._article.id,
-    }
+    this._data = { ...this._data, ...value }
   }
   @Output() closeEvent: EventEmitter<void> = new EventEmitter
   @Output() submitEvent: EventEmitter<[FormModes, ViewModel]> = new EventEmitter
@@ -48,9 +37,9 @@ export class FormComponent {
 
   submitForm() {
     if (this._mode === FormModes.create) {
-      this.submitEvent.emit([FormModes.create, this._article])
+      this.submitEvent.emit([FormModes.create, this._data])
     } else if (this._mode === FormModes.edit) {
-      this.submitEvent.emit([FormModes.edit, this._article])
+      this.submitEvent.emit([FormModes.edit, this._data])
     }
   }
 
@@ -62,5 +51,8 @@ export class FormComponent {
         return 'Edit Mode';
       default: return 'None Title'
     }
+  }
+  refreshData() {
+    this._data = { ...this._data }
   }
 }

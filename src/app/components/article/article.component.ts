@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { FormModes } from '../../models/enums';
-import { MyBtnComponent } from '../../my-btn/my-btn.component';
+import { MyBtnComponent } from '../UI/my-btn/my-btn.component';
 import { ViewModel } from '../../models/viewModel.interface';
-
-
 
 @Component({
   selector: 'article-comp',

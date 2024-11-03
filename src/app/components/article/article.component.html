@@ -3,8 +3,8 @@
     <h2 class="card-title">{{_article.title}}</h2>
   </div>
   @if(showImage() && validationUrl() && _article.imageUrl !== 'Your Image' ){
-  <img class="w-100" [src]="_article.imageUrl" [alt]="_article.title" [title]="_article.title">
-  } @else {
+  <img class="w-100 p-3" [src]="_article.imageUrl" [alt]="_article.title" [title]="_article.title">
+  } @else if (_article.imageUrl === 'Your Image' ){
   <p class="m-3 fs-5 fst-italic">Your Image</p>
   }
   <div class="card-body">

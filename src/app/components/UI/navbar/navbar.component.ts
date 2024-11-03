@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { FormModes } from "../../../models/enums";
-import { MyBtnComponent } from "../../../my-btn/my-btn.component";
+import { MyBtnComponent } from "../my-btn/my-btn.component";
 
 @Component({
   selector: 'navbar-comp',

@@ -1,7 +1,7 @@
 import { Component, inject, signal } from "@angular/core";
 import { FooterComponent } from "../../components/UI/footer/footer.component";
 import { ArticlesListComponent } from "../../components/articlesList/articles-list.component";
-import { ApiService } from "../../services/api.service";
+import { ArticlesService } from "../../services/articles.service";
 import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../models/footerData.inteface";
 import { FormModes } from "../../models/enums";
@@ -19,14 +19,14 @@ import { HttpErrorResponse } from "@angular/common/http";
   imports: [FooterComponent, ArticlesListComponent, AsyncPipe, FormComponent, NavbarComponent]
 })
 export class MainPageComponent {
-  private readonly api = inject(ApiService)
+  private readonly api = inject(ArticlesService)
   readonly allArticles$: Observable<ViewModel[]> = this.api.getAllArticles()
   showFormSignal = signal(FormModes.show)
 
   footerData: FooterData = {
     linkAlias: "Lowgular",
     linkHref: "http://www.lowgular.io",
-    copyrightText: "Karol Awdziewicz PL, All rights reserved."
+    copyrightText: "Karol Awdziewicz PL, Inc."
   }
   formModes = FormModes
   viewData?: ViewModel

@@ -6,7 +6,7 @@ import { map, Observable } from "rxjs";
 import { ViewModel } from "../models/viewModel.interface";
 
 @Injectable({ providedIn: "root" })
-export class ApiService {
+export class ArticlesService {
   http = inject(HttpClient)
 
   getAllArticles(): Observable<ViewModel[]> {
