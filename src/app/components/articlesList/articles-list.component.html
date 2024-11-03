@@ -2,8 +2,7 @@
 <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
   @for(article of articleList; track $index){
   <div class="col">
-    <article-comp [title]="article?.title ?? ''" [content]="article?.content ?? ''" [imageUrl]="article?.imageUrl ?? ''"
-      [articleId]="article?.id ?? ''" (editModalHandler)="showForm([formModes.edit,$event])">
+    <article-comp (editEvent)="onEditEvent(article)" [article]="article">
     </article-comp>
   </div>
   }

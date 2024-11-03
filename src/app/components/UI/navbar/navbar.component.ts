@@ -11,8 +11,8 @@ import { MyBtnComponent } from "../../../my-btn/my-btn.component";
 export class NavbarComponent {
   formModes = FormModes
   @Input() title: string = 'No Title'
-  @Output() buttonClick: EventEmitter<string> = new EventEmitter;
-  buttonHandler(data?: string) {
+  @Output() buttonClick: EventEmitter<FormModes> = new EventEmitter;
+  buttonHandler(data: FormModes) {
     this.buttonClick.emit(data)
   }
 }

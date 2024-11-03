@@ -2,17 +2,15 @@
   <div class="card-header text-center">
     <h2 class="card-title">{{_article.title}}</h2>
   </div>
-  @if(showImage() && validationUrl() && imageUrl !== 'Your Image' ){
-  <img class="w-100" [src]="imageUrl" [alt]="title" [title]="title">
-  } @else if (imageUrl === 'Your Image' || imageUrl === 'lack of image :('){
+  @if(showImage() && validationUrl() && _article.imageUrl !== 'Your Image' ){
+  <img class="w-100" [src]="_article.imageUrl" [alt]="_article.title" [title]="_article.title">
+  } @else {
   <p class="m-3 fs-5 fst-italic">Your Image</p>
   }
   <div class="card-body">
-    <p class="card-text fs-5">{{content}}</p>
+    <p class="card-text fs-5">{{_article.content}}</p>
   </div>
   <div class="card-footer ">
-    {{_article.content}}
-    {{_article.id}}
     <div class="mb-0">
       <div class="d-block d-flex justify-content-center">
         @if(showImage() ){
@@ -20,7 +18,7 @@
         } @else {
         <my-btn extraClass="btn-outline-secondary" (btnClick)="toggleImage()">Show Image</my-btn>
         }
-        <my-btn extraClass="btn-outline-secondary" (btnClick)="openEditModal()" [disable]="disableBtns">Edit</my-btn>
+        <my-btn extraClass="btn-outline-secondary" (btnClick)="edit()" [disable]="disableBtn">Edit</my-btn>
       </div>
     </div>
   </div>

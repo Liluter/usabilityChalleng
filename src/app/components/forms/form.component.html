@@ -5,22 +5,22 @@
     <div class="col me-3">
       <div class="card p-3 bg-light">
         <div class="card-body">
-          <h2 class="card-title text-center mt-3 mb-3">{{title}}</h2>
+          <h2 class="card-title text-center mt-3 mb-3">{{_title}}</h2>
           <form #newArticle="ngForm" (ngSubmit)="submitForm()">
             <div class="mb-3">
               <label for="iamge-url" class="form-label">Image Url</label>
               <input type="text" class="form-control" id="iamge-url" name="image-url" placeholder="Your Image"
-                [(ngModel)]="article.imageUrl">
+                [(ngModel)]="_article.imageUrl">
             </div>
             <div class="mb-3">
               <label for="article-name" class="form-label">Article Name</label>
               <input type="text" class="form-control" id="article-name" name="article-name" placeholder="Your Title"
-                [(ngModel)]="article.title">
+                [(ngModel)]="_article.title">
             </div>
             <div class="mb-3">
               <label for="article-content" class="form-label">Article Content</label>
               <textarea class="form-control" id="article-content" name="article-content" rows="12"
-                placeholder="Your Content" [(ngModel)]="article.content"></textarea>
+                placeholder="Your Content" [(ngModel)]="_article.content"></textarea>
             </div>
             <div class="mb-4">
               <div class="d-block d-flex justify-content-evenly ">
@@ -45,8 +45,7 @@
         </div>
       </div>
       <div class="row p-0 mt-3 modal-dialog-scrollable">
-        <article-comp class="p-0  scrollable" [title]=" article.title" [content]="article.content"
-          [imageUrl]="article.imageUrl" [mode]="_mode"></article-comp>
+        <article-comp class="p-0  scrollable" [article]="_article" [mode]="_mode"></article-comp>
       </div>
     </div>
   </div>

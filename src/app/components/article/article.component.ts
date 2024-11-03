@@ -12,64 +12,40 @@ import { ViewModel } from '../../models/viewModel.interface';
   imports: [MyBtnComponent]
 })
 export class ArticleComponent {
-  disableBtns: boolean = false
+  disableBtn: boolean = false
   showImage = signal(true)
   _article: ViewModel = {
     content: 'lack of content :(',
     imageUrl: 'Your Image',
-    title: 'no title :('
+    title: 'no title :(',
+    id: ''
   }
 
-  @Input({
-    transform: (value: string) => {
-      return value ? value : 'no title :('
-    },
-  }) title: string = ''
-
-  @Input({
-    transform: (value: string) => {
-      return value ? value : 'lack of content :('
-    }
-  }) content: string = ''
-
-  @Input({
-    transform: (value: string) => {
-      return value ? value : 'Your Image'
-    }
-  }) imageUrl: string = ''
-
-  @Input({
-    transform: (value: string) => {
-      return value ? value : ''
-    },
-  }) articleId: string = ''
-
   @Input() set mode(value: FormModes) {
-    this.disableBtns = (value === FormModes.edit || value === FormModes.create)
+    this.disableBtn = (value === FormModes.edit || value === FormModes.create)
   }
 
   @Input() set article(value: ViewModel) {
     this._article = { ...value }
   }
 
-  @Output() editModalHandler: EventEmitter<ViewModel> = new EventEmitter
+  @Output() editEvent: EventEmitter<void> = new EventEmitter
 
   toggleImage() {
     this.showImage.update(bool => bool = !bool)
   }
   validationUrl() {
-    return this.imageUrl ?
-      (this.imageUrl.includes('http') && this.imageUrl.length >= 10 || this.imageUrl === 'Your Image') ? true : false
-      : false
-  }
-  openEditModal() {
-    const articleData: ViewModel = {
-      content: this.content ?? '',
-      imageUrl: this.imageUrl ?? '',
-      title: this.title ?? '',
-      id: this.articleId ?? ''
+    if (this._article.imageUrl) {
+      if (this._article.imageUrl.includes('http') && this._article.imageUrl.length >= 10) {
+        return true
+      } else if (this._article.imageUrl === 'Your Image') {
+        return true
+      } else return false
     }
-    this.editModalHandler.emit(articleData)
+    return false
+  }
+  edit() {
+    this.editEvent.emit()
   }
 }
 
