@@ -8,18 +8,19 @@ import { FormModes } from "../../models/enums";
 import { FormComponent } from "../../components/forms/form.component";
 import { ArticleElement } from "../../models/article.interface";
 import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.component";
+import { NavbarComponent } from "../../components/UI/navbar/navbar.component";
 
 @Component({
   selector: 'main-page',
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   standalone: true,
-  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, FormComponent, SpinnerComponent]
+  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, FormComponent, SpinnerComponent, NavbarComponent]
 })
 export class MainPageComponent {
   private readonly api = inject(ApiService)
   readonly allArticles$ = this.api.getAllArticles()
-  showForm = signal(FormModes.show)
+  showFormSignal = signal(FormModes.show)
 
   footerData: FooterData = {
     linkAlias: "Lowgular",
@@ -31,16 +32,15 @@ export class MainPageComponent {
   editArticleData?: ArticleElement
   openModal(data: [FormModes, ArticleElement?]) {
     if (data[0] === FormModes.create) {
-      this.showForm.set(FormModes.create)
+      this.showFormSignal.set(FormModes.create)
     } else if (data[0] === FormModes.edit) {
-      this.showForm.set(FormModes.edit)
+      this.showFormSignal.set(FormModes.edit)
       if (data[1]) {
         this.editArticleData = { ...data[1] }
       }
     }
   }
   closeModal() {
-    this.showForm.set(FormModes.show)
+    this.showFormSignal.set(FormModes.show)
   }
-
 }

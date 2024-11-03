@@ -7,7 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormModes } from '../../models/enums';
 
 @Component({
-  selector: 'create-form',
+  selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   standalone: true,

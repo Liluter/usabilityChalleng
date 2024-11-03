@@ -1,19 +1,13 @@
-<navbar-comp title="Template Component - Article List" buttonContent="Add New Article"
-  [buttonEventSelector]="formModes.create" (buttonEvent)="showForm([$event])"></navbar-comp>
 @if(articleList){
 <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
-  @for(article of articleList; track $index;let lastArticle = $last){
-  @if((articleRange()[0] <= $index) && (articleRange()[1]>= $index) ) {
-    <div class="col">
-      <article-comp [title]="article?.title ?? ''" [content]="article?.content ?? ''"
-        [imageUrl]="article?.imageUrl ?? ''" [articleId]="article?.id ?? ''"
-        (editModalHandler)="showForm([formModes.edit,$event])">
-      </article-comp>
-    </div>
-    }}
+  @for(article of articleList; track $index){
+  <div class="col">
+    <article-comp [title]="article?.title ?? ''" [content]="article?.content ?? ''" [imageUrl]="article?.imageUrl ?? ''"
+      [articleId]="article?.id ?? ''" (editModalHandler)="showForm([formModes.edit,$event])">
+    </article-comp>
+  </div>
+  }
 </div>
-<paginator-component [range]="articleRange()" [numberOfArticles]="articleList.length"
-  (rangeSelector)="selectRange($event)"></paginator-component>
 } @else {
-<spinner-comp [size]="sizes.large"></spinner-comp>
+<p>Loading ...</p>
 }

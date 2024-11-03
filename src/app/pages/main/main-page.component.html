@@ -1,11 +1,13 @@
 <div class="d-flex  flex-column height100">
+  <navbar-comp title="Template Component - Article List" buttonContent="Add New Article"
+    (buttonClick)="openModal([$event])"></navbar-comp>
   @if (allArticles$ | async; as articles){
-  @if(showForm() === formModes.create){
-  <create-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id"
-    [mode]="formModes.create"></create-form>
-  }@if(showForm() === formModes.edit){
-  <create-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id" [mode]="formModes.edit"
-    [editableData]="editArticleData"></create-form>
+  @if(showFormSignal() === formModes.create){
+  <app-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id"
+    [mode]="formModes.create"></app-form>
+  }@if(showFormSignal() === formModes.edit){
+  <app-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id" [mode]="formModes.edit"
+    [editableData]="editArticleData"></app-form>
   }
   <div class="container d-block flex-grow-1">
     <articles-list [articleList]="articles" class="d-block maxHeight" (openFormHandler)="openModal($event) ">

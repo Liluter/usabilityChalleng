@@ -9,9 +9,8 @@ import { FormModes } from "../../../models/enums";
 export class NavbarComponent {
   @Input() title: string = 'No Title'
   @Input() buttonContent: string = 'click';
-  @Input() buttonEventSelector: FormModes = FormModes.create
-  @Output() buttonEvent: EventEmitter<FormModes> = new EventEmitter;
+  @Output() buttonClick: EventEmitter<FormModes> = new EventEmitter;
   buttonHandler() {
-    this.buttonEvent.emit(this.buttonEventSelector)
+    this.buttonClick.emit(FormModes.create)
   }
 }
