@@ -12,14 +12,13 @@
               <input type="text" class="form-control" id="iamge-url" name="image-url" [(ngModel)]="_data.imageUrl"
                 (ngModelChange)="refreshData()">
             </div>
-            {{_data.title}}
             <div class="mb-3">
-              <label for="article-name" class="form-label">Article Name</label>
+              <label for="article-name" class="form-label">{{itemsType}} Name</label>
               <input type="text" class="form-control" id="article-name" name="article-name" [(ngModel)]="_data.title"
                 (ngModelChange)="refreshData()">
             </div>
             <div class="mb-3">
-              <label for="article-content" class="form-label">Article Content</label>
+              <label for="article-content" class="form-label">{{itemsType}} Content</label>
               <textarea class="form-control" id="article-content" name="article-content" rows="12"
                 [(ngModel)]="_data.content" (ngModelChange)="refreshData()"></textarea>
             </div>

@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CardComponent } from '../UI/card/card.component';
-import { MyBtnComponent } from "../UI/my-btn/my-btn.component";
-import { ViewModel } from '../../models/viewModel.interface';
-import { FormModes } from '../../models/enums';
+import { CardComponent } from '../card/card.component';
+import { MyBtnComponent } from "../my-btn/my-btn.component";
+import { ViewModel } from '../../../models/viewModel.interface';
+import { FormModes } from '../../../models/enums';
 
 @Component({
   selector: 'app-form',
@@ -13,6 +13,7 @@ import { FormModes } from '../../models/enums';
   imports: [FormsModule, CardComponent, MyBtnComponent]
 })
 export class FormComponent {
+  formModes = FormModes
   _mode: FormModes = FormModes.show
   _title: string = ''
   _data: ViewModel = {
@@ -28,6 +29,7 @@ export class FormComponent {
   @Input() set formData(value: ViewModel | undefined) {
     this._data = { ...this._data, ...value }
   }
+  @Input() itemsType: string = ''
   @Output() closeEvent: EventEmitter<void> = new EventEmitter
   @Output() submitEvent: EventEmitter<[FormModes, ViewModel]> = new EventEmitter
 

@@ -3,14 +3,15 @@
     (buttonClick)="openForm([$event])"></navbar-comp>
   @if (allArticles$ | async; as articles){
   @if(showFormSignal() === formModes.create){
-  <app-form (closeEvent)="closeForm()" [mode]="formModes.create" (submitEvent)="onSubmit($event)"></app-form>
+  <app-form itemsType="Article" (closeEvent)="closeForm()" [mode]="formModes.create"
+    (submitEvent)="onSubmit($event)"></app-form>
   }@if(showFormSignal() === formModes.edit){
-  <app-form (closeEvent)="closeForm()" [mode]="formModes.edit" [formData]="viewData"
+  <app-form itemsType="Article" (closeEvent)="closeForm()" [mode]="formModes.edit" [formData]="viewData"
     (submitEvent)="onSubmit($event)"></app-form>
   }
   <div class="container d-block flex-grow-1">
-    <articles-list [itemsList]="articles" class="d-block maxHeight" (editEvent)="openForm($event) ">
-    </articles-list>
+    <list-comp [itemsList]="articles" class="d-block maxHeight" (editEvent)="openForm($event) ">
+    </list-comp>
   </div>
   } @else {
   <p>Loading ...</p>
