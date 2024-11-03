@@ -1,8 +1,8 @@
-@if(articleList){
+@if(itemsList){
 <div class="row g-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
-  @for(article of articleList; track $index){
+  @for(item of itemsList; track $index){
   <div class="col">
-    <article-comp (editEvent)="onEditEvent(article)" [article]="article">
+    <article-comp (editEvent)="onEditEvent(item)" [article]="item">
     </article-comp>
   </div>
   }

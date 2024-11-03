@@ -9,7 +9,7 @@
     (submitEvent)="onSubmit($event)"></app-form>
   }
   <div class="container d-block flex-grow-1">
-    <articles-list [articleList]="articles" class="d-block maxHeight" (editEvent)="openForm($event) ">
+    <articles-list [itemsList]="articles" class="d-block maxHeight" (editEvent)="openForm($event) ">
     </articles-list>
   </div>
   } @else {

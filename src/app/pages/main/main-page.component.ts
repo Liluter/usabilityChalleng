@@ -1,6 +1,6 @@
 import { Component, inject, signal } from "@angular/core";
 import { FooterComponent } from "../../components/UI/footer/footer.component";
-import { ArticlesListComponent } from "../../components/articlesList/articles-list.component";
+import { ListComponent } from "../../components/UI/List/list.component";
 import { ArticlesService } from "../../services/articles.service";
 import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../models/footerData.inteface";
@@ -16,7 +16,7 @@ import { HttpErrorResponse } from "@angular/common/http";
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   standalone: true,
-  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, FormComponent, NavbarComponent]
+  imports: [FooterComponent, ListComponent, AsyncPipe, FormComponent, NavbarComponent]
 })
 export class MainPageComponent {
   private readonly api = inject(ArticlesService)
