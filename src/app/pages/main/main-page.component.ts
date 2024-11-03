@@ -6,9 +6,11 @@ import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../models/footerData.inteface";
 import { FormModes } from "../../models/enums";
 import { FormComponent } from "../../components/forms/form.component";
-import { ArticleElement } from "../../models/article.interface";
+import { DataModel } from "../../models/data.interface";
 import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.component";
 import { NavbarComponent } from "../../components/UI/navbar/navbar.component";
+import { Observable } from "rxjs";
+import { ViewModel } from "../../models/viewModel.interface";
 
 @Component({
   selector: 'main-page',
@@ -19,7 +21,7 @@ import { NavbarComponent } from "../../components/UI/navbar/navbar.component";
 })
 export class MainPageComponent {
   private readonly api = inject(ApiService)
-  readonly allArticles$ = this.api.getAllArticles()
+  readonly allArticles$: Observable<ViewModel[]> = this.api.getAllArticles()
   showFormSignal = signal(FormModes.show)
 
   footerData: FooterData = {
@@ -29,8 +31,8 @@ export class MainPageComponent {
   }
   formModes = FormModes
   sizes = Sizes
-  editArticleData?: ArticleElement
-  openModal(data: [string, ArticleElement?]) {
+  editArticleData?: ViewModel
+  openModal(data: [string, ViewModel?]) {
     if (data[0] === FormModes.create) {
       this.showFormSignal.set(FormModes.create)
     } else if (data[0] === FormModes.edit) {

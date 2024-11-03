@@ -1,1 +1,3 @@
-<button class="btn" [class]="extraClass" (click)="onClick()">{{content}}</button>
+<button [type]="function" class="btn mx-3" [class]="extraClass" [disabled]="(disable)" (click)="onClick($event)">
+  <ng-content></ng-content>
+</button>

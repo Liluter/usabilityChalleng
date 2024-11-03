@@ -3,22 +3,19 @@
     (buttonClick)="openModal([$event])"></navbar-comp>
   @if (allArticles$ | async; as articles){
   @if(showFormSignal() === formModes.create){
-  <app-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id"
-    [mode]="formModes.create"></app-form>
+  <app-form (modalHandler)="closeModal()" [mode]="formModes.create"></app-form>
   }@if(showFormSignal() === formModes.edit){
-  <app-form (modalHandler)="closeModal()" [lastArticleNo]="articles[articles.length-1].id" [mode]="formModes.edit"
-    [editableData]="editArticleData"></app-form>
+  <app-form (modalHandler)="closeModal()" [mode]="formModes.edit" [editableData]="editArticleData"></app-form>
   }
   <div class="container d-block flex-grow-1">
     <articles-list [articleList]="articles" class="d-block maxHeight" (openFormHandler)="openModal($event) ">
     </articles-list>
   </div>
   } @else {
-  <spinner-comp [size]="sizes.large"></spinner-comp>
+  <p>Loading ...</p>
   }
   <footer-comp>
     <span>Mentorship by: <a href="{{footerData.linkHref}}">{{footerData.linkAlias}}</a></span>
-    <span>Ms: <a href="{{footerData.linkHref}}">2</a></span>
     <p class="mt-3 copyrights">Copyright® 2024 {{footerData.copyrightText}}</p>
   </footer-comp>
 </div>

@@ -1,16 +1,24 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { ArticleElement } from '../../models/article.interface';
 import { FormModes } from '../../models/enums';
+import { MyBtnComponent } from '../../my-btn/my-btn.component';
+import { ViewModel } from '../../models/viewModel.interface';
+
+
 
 @Component({
   selector: 'article-comp',
   templateUrl: './article.component.html',
   standalone: true,
-  imports: []
+  imports: [MyBtnComponent]
 })
 export class ArticleComponent {
   disableBtns: boolean = false
   showImage = signal(true)
+  _article: ViewModel = {
+    content: 'lack of content :(',
+    imageUrl: 'Your Image',
+    title: 'no title :('
+  }
 
   @Input({
     transform: (value: string) => {
@@ -40,7 +48,11 @@ export class ArticleComponent {
     this.disableBtns = (value === FormModes.edit || value === FormModes.create)
   }
 
-  @Output() editModalHandler: EventEmitter<ArticleElement> = new EventEmitter
+  @Input() set article(value: ViewModel) {
+    this._article = { ...value }
+  }
+
+  @Output() editModalHandler: EventEmitter<ViewModel> = new EventEmitter
 
   toggleImage() {
     this.showImage.update(bool => bool = !bool)
@@ -51,7 +63,7 @@ export class ArticleComponent {
       : false
   }
   openEditModal() {
-    const articleData: ArticleElement = {
+    const articleData: ViewModel = {
       content: this.content ?? '',
       imageUrl: this.imageUrl ?? '',
       title: this.title ?? '',

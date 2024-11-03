@@ -1,10 +1,10 @@
-export interface ArticleElement {
+export interface DataModel {
   article?: Article,
-  comments?: Comment[],
+  comments: [],
   content: string,
-  createdAt?: string,
+  createdAt: string,
   data?: ArticleData,
-  id?: string,
+  id: string,
   imageUrl: string,
   title: string
 }

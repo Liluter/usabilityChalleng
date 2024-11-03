@@ -8,11 +8,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './my-btn.component.scss'
 })
 export class MyBtnComponent {
-  @Input() eventData: string = ''
-  @Input() content: string = 'click'
   @Input() extraClass: string = ''
+  @Input() disable: boolean = false
+  @Input() function: string = 'button'
   @Output() btnClick: EventEmitter<string> = new EventEmitter
-  onClick() {
-    this.btnClick.emit(this.eventData)
+
+  onClick(event: Event) {
+    this.btnClick.emit()
   }
 }
