@@ -11,9 +11,9 @@ export class MyBtnComponent {
   @Input() extraClass: string = ''
   @Input() disable: boolean = false
   @Input() function: string = 'button'
-  @Output() btnClick: EventEmitter<string> = new EventEmitter
+  @Output() btnClick: EventEmitter<void> = new EventEmitter
 
-  onClick(event: Event) {
+  onClick() {
     this.btnClick.emit()
   }
 }

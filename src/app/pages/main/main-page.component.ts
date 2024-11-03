@@ -6,7 +6,6 @@ import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../models/footerData.inteface";
 import { FormModes } from "../../models/enums";
 import { FormComponent } from "../../components/forms/form.component";
-import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.component";
 import { NavbarComponent } from "../../components/UI/navbar/navbar.component";
 import { Observable } from "rxjs";
 import { ViewModel } from "../../models/viewModel.interface";
