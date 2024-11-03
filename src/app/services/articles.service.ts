@@ -17,9 +17,6 @@ export class ArticlesService {
   postArticle(data: ViewModel) {
     return this.http.post(articlesUrl, data)
   }
-  // deleteArticle(id: string) {
-  //   return this.http.delete(articlesUrl + '/' + id)
-  // }
   putArticle(data: ViewModel) {
     return this.http.put(articlesUrl + '/' + data.id, data)
   }
