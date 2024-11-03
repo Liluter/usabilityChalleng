@@ -30,7 +30,7 @@ export class MainPageComponent {
   formModes = FormModes
   sizes = Sizes
   editArticleData?: ArticleElement
-  openModal(data: [FormModes, ArticleElement?]) {
+  openModal(data: [string, ArticleElement?]) {
     if (data[0] === FormModes.create) {
       this.showFormSignal.set(FormModes.create)
     } else if (data[0] === FormModes.edit) {
