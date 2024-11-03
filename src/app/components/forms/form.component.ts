@@ -1,19 +1,19 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ArticleComponent } from '../../article/article.component';
-import { ApiService } from '../../../services/api.service';
-import { ArticleElement } from '../../../models/article.interface';
+import { ArticleComponent } from '../article/article.component';
+import { ApiService } from '../../services/api.service';
+import { ArticleElement } from '../../models/article.interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormModes } from '../../../models/enums';
+import { FormModes } from '../../models/enums';
 
 @Component({
   selector: 'create-form',
-  templateUrl: './createForm.component.html',
-  styleUrl: './createForm.component.scss',
+  templateUrl: './form.component.html',
+  styleUrl: './form.component.scss',
   standalone: true,
   imports: [FormsModule, ArticleComponent]
 })
-export class CreateFormComponent {
+export class FormComponent {
   api = inject(ApiService)
   _mode: FormModes = FormModes.show
   title: string = ''

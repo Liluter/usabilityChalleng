@@ -5,7 +5,7 @@ import { ApiService } from "../../services/api.service";
 import { AsyncPipe } from "@angular/common";
 import { FooterData } from "../../models/footerData.inteface";
 import { FormModes } from "../../models/enums";
-import { CreateFormComponent } from "../../components/forms/createForm/createForm.component";
+import { FormComponent } from "../../components/forms/form.component";
 import { ArticleElement } from "../../models/article.interface";
 import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.component";
 
@@ -14,7 +14,7 @@ import { Sizes, SpinnerComponent } from "../../components/UI/spinner/spinner.com
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',
   standalone: true,
-  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, CreateFormComponent, SpinnerComponent]
+  imports: [FooterComponent, ArticlesListComponent, AsyncPipe, FormComponent, SpinnerComponent]
 })
 export class MainPageComponent {
   private readonly api = inject(ApiService)

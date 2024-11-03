@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { ArticleImageComponent } from "../UI/articleImage/article-image.component";
 import { ArticleElement } from '../../models/article.interface';
 import { FormModes } from '../../models/enums';
 
@@ -7,7 +6,7 @@ import { FormModes } from '../../models/enums';
   selector: 'article-comp',
   templateUrl: './article.component.html',
   standalone: true,
-  imports: [ArticleImageComponent]
+  imports: []
 })
 export class ArticleComponent {
   disableBtns: boolean = false

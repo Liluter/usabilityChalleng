@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { AsyncPipe, JsonPipe, NgClass } from '@angular/common';
 import { ArticleComponent } from '../article/article.component';
 import { ArticleElement } from '../../models/article.interface';
-import { ArticleImageComponent } from "../UI/articleImage/article-image.component";
 import { PaginatorComponent } from "../UI/paginator/paginator.component";
 import { FormModes } from "../../models/enums"
 import { NavbarComponent } from "../UI/navbar/navbar.component";
@@ -11,7 +10,7 @@ import { Sizes, SpinnerComponent } from "../UI/spinner/spinner.component";
   selector: 'articles-list',
   templateUrl: './articles-list.component.html',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, ArticleImageComponent, PaginatorComponent, NavbarComponent, SpinnerComponent]
+  imports: [AsyncPipe, JsonPipe, ArticleComponent, NgClass, PaginatorComponent, NavbarComponent, SpinnerComponent]
 })
 export class ArticlesListComponent {
   @Input({ required: true }) articleList: ArticleElement[] = []
