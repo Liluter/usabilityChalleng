@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ArticleComponent } from '../article/article.component';
+import { CardComponent } from '../UI/card/card.component';
 import { MyBtnComponent } from "../UI/my-btn/my-btn.component";
 import { ViewModel } from '../../models/viewModel.interface';
 import { FormModes } from '../../models/enums';
@@ -10,7 +10,7 @@ import { FormModes } from '../../models/enums';
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   standalone: true,
-  imports: [FormsModule, ArticleComponent, MyBtnComponent]
+  imports: [FormsModule, CardComponent, MyBtnComponent]
 })
 export class FormComponent {
   _mode: FormModes = FormModes.show

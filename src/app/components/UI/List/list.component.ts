@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ArticleComponent } from '../../article/article.component';
+import { CardComponent } from '../card/card.component';
 import { FormModes } from "../../../models/enums"
 import { ViewModel } from '../../../models/viewModel.interface';
 @Component({
   selector: 'articles-list',
   templateUrl: './list.component.html',
   standalone: true,
-  imports: [ArticleComponent]
+  imports: [CardComponent]
 })
 export class ListComponent {
   @Input() itemsList: ViewModel[] | null | undefined = []

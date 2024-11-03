@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-import { FormModes } from '../../models/enums';
-import { MyBtnComponent } from '../UI/my-btn/my-btn.component';
-import { ViewModel } from '../../models/viewModel.interface';
+import { FormModes } from '../../../models/enums';
+import { MyBtnComponent } from '../my-btn/my-btn.component';
+import { ViewModel } from '../../../models/viewModel.interface';
 
 @Component({
-  selector: 'article-comp',
-  templateUrl: './article.component.html',
+  selector: 'card-comp',
+  templateUrl: './card.component.html',
   standalone: true,
   imports: [MyBtnComponent]
 })
-export class ArticleComponent {
+export class CardComponent {
   disableBtn: boolean = false
   showImage = signal(true)
-  _article: ViewModel = {
+  _data: ViewModel = {
     content: 'lack of content :(',
     imageUrl: 'Your Image',
     title: 'no title :(',
@@ -24,7 +24,7 @@ export class ArticleComponent {
   }
 
   @Input() set article(value: ViewModel) {
-    this._article = { ...value }
+    this._data = { ...value }
   }
 
   @Output() editEvent: EventEmitter<void> = new EventEmitter
@@ -33,10 +33,10 @@ export class ArticleComponent {
     this.showImage.update(bool => bool = !bool)
   }
   validationUrl() {
-    if (this._article.imageUrl) {
-      if (this._article.imageUrl.includes('http') && this._article.imageUrl.length >= 10) {
+    if (this._data.imageUrl) {
+      if (this._data.imageUrl.includes('http') && this._data.imageUrl.length >= 10) {
         return true
-      } else if (this._article.imageUrl === 'Your Image') {
+      } else if (this._data.imageUrl === 'Your Image') {
         return true
       } else return false
     }

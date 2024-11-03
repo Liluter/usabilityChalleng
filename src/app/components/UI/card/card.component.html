@@ -1,14 +1,14 @@
 <div class="card">
   <div class="card-header text-center">
-    <h2 class="card-title">{{_article.title}}</h2>
+    <h2 class="card-title">{{_data.title}}</h2>
   </div>
-  @if(showImage() && validationUrl() && _article.imageUrl !== 'Your Image' ){
-  <img class="w-100 p-3" [src]="_article.imageUrl" [alt]="_article.title" [title]="_article.title">
-  } @else if (_article.imageUrl === 'Your Image' ){
+  @if(showImage() && validationUrl() && _data.imageUrl !== 'Your Image' ){
+  <img class="w-100 p-3" [src]="_data.imageUrl" [alt]="_data.title" [title]="_data.title">
+  } @else if (_data.imageUrl === 'Your Image' ){
   <p class="m-3 fs-5 fst-italic">Your Image</p>
   }
   <div class="card-body">
-    <p class="card-text fs-5">{{_article.content}}</p>
+    <p class="card-text fs-5">{{_data.content}}</p>
   </div>
   <div class="card-footer ">
     <div class="mb-0">
