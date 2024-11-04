@@ -9,7 +9,7 @@ import { ViewModel } from '../../../models/viewModel.interface';
   imports: [CardComponent]
 })
 export class ListComponent {
-  @Input() itemsList: ViewModel[] | null | undefined = []
+  @Input() itemsList: ViewModel[] | null = []
   @Output() editEvent = new EventEmitter<[FormModes, ViewModel?]>
   onEditEvent(item: ViewModel) {
     this.editEvent.emit([FormModes.edit, item])

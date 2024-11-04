@@ -1,8 +1,8 @@
 export interface DataModel {
-  comments: [],
-  content: string,
-  createdAt: string,
-  id: string,
-  imageUrl: string,
-  title: string
+  readonly comments: [],
+  readonly content: string,
+  readonly createdAt: string,
+  readonly id: string,
+  readonly imageUrl: string,
+  readonly title: string
 }
