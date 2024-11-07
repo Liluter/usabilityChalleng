@@ -15,7 +15,6 @@ import { FormModes } from '../../../models/enums';
 export class FormComponent {
   formModes = FormModes
   _mode: FormModes = FormModes.show
-  _title: string = ''
   _data: ViewModel = {
     title: 'Your Title',
     content: 'Your Content',
@@ -24,8 +23,8 @@ export class FormComponent {
   }
   @Input() set mode(value: FormModes) {
     this._mode = value;
-    this._title = this.getTitleForMode(value)
   }
+  @Input() title: string = ''
   @Input() set formData(value: ViewModel | undefined) {
     this._data = { ...this._data, ...value }
   }
@@ -45,15 +44,6 @@ export class FormComponent {
     }
   }
 
-  private getTitleForMode(mode: FormModes): string {
-    switch (mode) {
-      case FormModes.create:
-        return 'Create Mode';
-      case FormModes.edit:
-        return 'Edit Mode';
-      default: return 'None Title'
-    }
-  }
   refreshData() {
     this._data = { ...this._data }
   }
